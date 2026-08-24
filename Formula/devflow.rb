@@ -2,8 +2,8 @@ class Devflow < Formula
   desc "AI-powered developer workflow scripts"
   homepage "https://github.com/captainwonderwall/devflow-platform"
   url "https://github.com/captainwonderwall/devflow-platform.git",
-      tag:      "devflow/v0.2.0",
-      revision: "1ddbbd60f71052c230fe6bcf5a9ea74370fbdbf8"
+      tag:      "devflow/v0.3.0",
+      revision: "65e6e45f8f29cd075f563f2b15969d907b354c6f"
   license "MIT"
   head "https://github.com/captainwonderwall/devflow-platform.git", branch: "main"
 
@@ -18,18 +18,21 @@ class Devflow < Formula
       system "pip3", "install", "--no-deps", "--target=#{python_packages}", whl
     end
 
-    (lib/"devflow/plugins").mkpath
-    rm_rf(libexec/"draft-pr/plugins")
-    (libexec/"draft-pr/plugins").make_symlink(lib/"devflow/plugins")
-
     %w[draft-pr address-pr squash-commits finish-issue start-issue].each do |tool|
       (bin/tool).write <<~BASH
         #!/bin/bash
-        export PYTHONPATH="#{python_packages}${PYTHONPATH:+:$PYTHONPATH}"
+        export PYTHONPATH="#{libexec}/plugin-manager:#{python_packages}${PYTHONPATH:+:$PYTHONPATH}"
         exec python3 "#{libexec}/#{tool}/#{tool}.py" "$@"
       BASH
       (bin/tool).chmod 0755
     end
+
+    (bin/"devflow-plugin").write <<~BASH
+      #!/bin/bash
+      export PYTHONPATH="#{libexec}/plugin-manager:#{python_packages}${PYTHONPATH:+:$PYTHONPATH}"
+      exec python3 "#{libexec}/plugin-manager/plugin_loader.py" "$@"
+    BASH
+    (bin/"devflow-plugin").chmod 0755
   end
 
   def caveats
