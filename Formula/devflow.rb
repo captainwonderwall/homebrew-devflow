@@ -2,16 +2,16 @@ class Devflow < Formula
   desc "AI-powered developer workflow scripts"
   homepage "https://github.com/captainwonderwall/devflow-platform"
   url "https://github.com/captainwonderwall/devflow-platform.git",
-      tag:      "devflow/v1.0.1",
-      revision: "4cf5ef5847c57424a74bc8025be99f753e681afe"
+      tag:      "devflow/v1.0.2",
+      revision: "65e3037e456c456e3efcf46f1ca1ea86a0c1a8d5"
   license "MIT"
   head "https://github.com/captainwonderwall/devflow-platform.git", branch: "main"
 
   depends_on "python@3"
 
   resource "devflow-sdk" do
-    url "https://github.com/captainwonderwall/devflow-platform/releases/download/devflow-sdk%2Fv1.0.0/devflow_sdk-1.0.0-py3-none-any.whl"
-    sha256 "42b0f967ffc1fac77f390299f5bac56e59a27f0c59eb2fbff3eb255e66cfce3e"
+    url "https://github.com/captainwonderwall/devflow-platform/releases/download/devflow-sdk%2Fv1.0.1/devflow_sdk-1.0.1-py3-none-any.whl"
+    sha256 "ee9dd61cb859b4b7d6b1d9ac6e0ad1794e30f98012b5b959526cf13ba829869f"
   end
 
   resource "questionary" do
