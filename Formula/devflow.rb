@@ -2,8 +2,8 @@ class Devflow < Formula
   desc "AI-powered developer workflow scripts"
   homepage "https://github.com/captainwonderwall/devflow-platform"
   url "https://github.com/captainwonderwall/devflow-platform.git",
-      tag:      "devflow/v1.4.2",
-      revision: "7a7051aedb239c603d9dc339ddfb5f6ec95b5d1d"
+      tag:      "devflow/v1.4.3",
+      revision: "6cce4631ac8382ef2904e7b23e8bef75ca76a2fb"
   license "MIT"
   head "https://github.com/captainwonderwall/devflow-platform.git", branch: "main"
 
@@ -11,8 +11,8 @@ class Devflow < Formula
 
   # TODO: update url and sha256 after releasing devflow-sdk/v1.1.0
   resource "devflow-sdk" do
-    url "https://github.com/captainwonderwall/devflow-platform/releases/download/devflow-sdk%2Fv1.2.8/devflow_sdk-1.2.8-py3-none-any.whl"
-    sha256 "c96c3dd9e008fcf7b3215b1cd9ceaa4f1be909d68332edb2b021db06431b246f"
+    url "https://github.com/captainwonderwall/devflow-platform/releases/download/devflow-sdk%2Fv1.2.9/devflow_sdk-1.2.9-py3-none-any.whl"
+    sha256 "971977abb8974b995d2d7953efc94a422b4288fcc7998ffac6cfcd2a1d759ff8"
   end
 
   resource "questionary" do
@@ -45,7 +45,7 @@ class Devflow < Formula
     %w[draft-pr address-pr squash-commits finish-issue start-issue].each do |tool|
       (bin/tool).write <<~BASH
         #!/bin/bash
-        export PYTHONPATH="#{libexec}/plugin-manager:#{python_packages}${PYTHONPATH:+:$PYTHONPATH}"
+        export PYTHONPATH="#{python_packages}${PYTHONPATH:+:$PYTHONPATH}"
         exec python3 "#{libexec}/#{tool}/#{tool}.py" "$@"
       BASH
       (bin/tool).chmod 0755
@@ -53,14 +53,14 @@ class Devflow < Formula
 
     (bin/"devflow-plugin").write <<~BASH
       #!/bin/bash
-      export PYTHONPATH="#{libexec}/plugin-manager:#{python_packages}${PYTHONPATH:+:$PYTHONPATH}"
-      exec python3 "#{libexec}/plugin-manager/plugin_loader.py" "$@"
+      export PYTHONPATH="#{python_packages}${PYTHONPATH:+:$PYTHONPATH}"
+      exec python3 -m devflow_sdk.core.plugin.cli "$@"
     BASH
     (bin/"devflow-plugin").chmod 0755
 
     (bin/"devflow-config").write <<~BASH
       #!/bin/bash
-      export PYTHONPATH="#{libexec}/plugin-manager:#{python_packages}${PYTHONPATH:+:$PYTHONPATH}"
+      export PYTHONPATH="#{python_packages}${PYTHONPATH:+:$PYTHONPATH}"
       exec python3 "#{libexec}/devflow-config/devflow-config.py" "$@"
     BASH
     (bin/"devflow-config").chmod 0755
