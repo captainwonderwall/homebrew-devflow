@@ -2,8 +2,8 @@ class Devflow < Formula
   desc "AI-powered developer workflow scripts"
   homepage "https://github.com/captainwonderwall/devflow-platform"
   url "https://github.com/captainwonderwall/devflow-platform.git",
-      tag:      "devflow/v1.4.3",
-      revision: "6cce4631ac8382ef2904e7b23e8bef75ca76a2fb"
+      tag:      "devflow/v1.4.4",
+      revision: "b1e68da99673d269472610cf822cc6a4d61d37fc"
   license "MIT"
   head "https://github.com/captainwonderwall/devflow-platform.git", branch: "main"
 
@@ -11,8 +11,8 @@ class Devflow < Formula
 
   # TODO: update url and sha256 after releasing devflow-sdk/v1.1.0
   resource "devflow-sdk" do
-    url "https://github.com/captainwonderwall/devflow-platform/releases/download/devflow-sdk%2Fv1.2.9/devflow_sdk-1.2.9-py3-none-any.whl"
-    sha256 "971977abb8974b995d2d7953efc94a422b4288fcc7998ffac6cfcd2a1d759ff8"
+    url "https://github.com/captainwonderwall/devflow-platform/releases/download/devflow-sdk%2Fv1.2.10/devflow_sdk-1.2.10-py3-none-any.whl"
+    sha256 "ce45550ddee3748c692cef48d22b46afe14ca1fb9cafdebafd10237efaf5d279"
   end
 
   resource "questionary" do
@@ -54,7 +54,7 @@ class Devflow < Formula
     (bin/"devflow-plugin").write <<~BASH
       #!/bin/bash
       export PYTHONPATH="#{python_packages}${PYTHONPATH:+:$PYTHONPATH}"
-      exec python3 -m devflow_sdk.core.plugin.cli "$@"
+      exec python3 -m devflow_sdk.plugin.cli "$@"
     BASH
     (bin/"devflow-plugin").chmod 0755
 
