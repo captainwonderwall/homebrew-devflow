@@ -2,8 +2,8 @@ class Devflow < Formula
   desc "AI-powered developer workflow scripts"
   homepage "https://github.com/captainwonderwall/devflow-platform"
   url "https://github.com/captainwonderwall/devflow-platform.git",
-      tag:      "devflow/v1.6.1",
-      revision: "3d6131e90871c1b4420060501fab42b5a55e67b1"
+      tag:      "devflow/v1.7.0",
+      revision: "34d7d6559a3e17513c99e252f239adbe02fb66d9"
   license "MIT"
   head "https://github.com/captainwonderwall/devflow-platform.git", branch: "main"
 
@@ -11,8 +11,8 @@ class Devflow < Formula
 
   # TODO: update url and sha256 after releasing devflow-sdk/v1.1.0
   resource "devflow-sdk" do
-    url "https://github.com/captainwonderwall/devflow-platform/releases/download/devflow-sdk%2Fv1.3.1/devflow_sdk-1.3.1-py3-none-any.whl"
-    sha256 "c24ef14cca34c8228213628b0bef4a0f7c654313e378e43c2912b3b6eb7841c0"
+    url "https://github.com/captainwonderwall/devflow-platform/releases/download/devflow-sdk%2Fv1.4.0/devflow_sdk-1.4.0-py3-none-any.whl"
+    sha256 "690f463b7aa31e2d92b600bff1cf0f95b173fdb246bd8694ef3496ff6252ef21"
   end
 
   resource "questionary" do
@@ -42,7 +42,7 @@ class Devflow < Formula
       end
     end
 
-    %w[draft-pr address-pr squash-commits finish-issue start-issue diagram].each do |tool|
+    %w[draft-pr address-pr squash-commits finish-issue start-issue continue-issue diagram].each do |tool|
       (bin/tool).write <<~BASH
         #!/bin/bash
         export PYTHONPATH="#{python_packages}${PYTHONPATH:+:$PYTHONPATH}"
