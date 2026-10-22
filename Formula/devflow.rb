@@ -2,8 +2,8 @@ class Devflow < Formula
   desc "AI-powered developer workflow scripts"
   homepage "https://github.com/captainwonderwall/devflow-platform"
   url "https://github.com/captainwonderwall/devflow-platform.git",
-      tag:      "devflow/v1.10.5",
-      revision: "22a9d8e14f62e41adf67fcdd53a3ec951ca83c42"
+      tag:      "devflow/v1.10.6",
+      revision: "6caebfe64583ed086cfd89a4e75a9fda6ba78cbf"
   license "MIT"
   head "https://github.com/captainwonderwall/devflow-platform.git", branch: "main"
 
@@ -11,8 +11,8 @@ class Devflow < Formula
 
   # TODO: update url and sha256 after releasing devflow-sdk/v1.1.0
   resource "devflow-sdk" do
-    url "https://github.com/captainwonderwall/devflow-platform/releases/download/devflow-sdk%2Fv1.6.3/devflow_sdk-1.6.3-py3-none-any.whl"
-    sha256 "5c2093cdeca99d00d22418d008452df2271839755daafd62614042eab66837a9"
+    url "https://github.com/captainwonderwall/devflow-platform/releases/download/devflow-sdk%2Fv1.6.4/devflow_sdk-1.6.4-py3-none-any.whl"
+    sha256 "043067c72626415d21760327e32c0d58136c18820cd423c5cb81cdd8a87199a8"
   end
 
   resource "questionary" do
